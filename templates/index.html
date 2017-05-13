@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+   {% for a in articles %}
+
+            <h2>{{ a.title }}</h2>
+            <p>{{ a.content }}</p>
+            <img src="{{ a.image.url }}" alt="" height="220">
+
+            <a href="{% url 'update' a.id %}" type="">Update</a>
+            <a href="{% url 'delete' a.id %}">Delete</a>
+        {% endfor %}
+{% endblock %}
+
+
+ 
