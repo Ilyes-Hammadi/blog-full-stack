@@ -5,7 +5,7 @@ from .forms import ArticleCreateForm
 
 # Create your views here.
 def index(request):
-    articles = Article.objects.all()
+    articles = Article.objects.all().order_by('-id')
 
     context = {
        'articles' : articles
@@ -29,6 +29,7 @@ def create(request):
         
         if form.is_valid():
             article = form.save(commit=False)
+            article.user = request.user
             article.save()
         
         return redirect('index')

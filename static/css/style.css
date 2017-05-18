@@ -1,0 +1,35 @@
+body {
+    background-color: #fafafa;
+}
+
+.navbar {
+    background-color: white !important;
+}
+
+.actions i:last-child {
+    float: right;
+}
+
+.actions {
+    margin: 8px;
+}
+
+.user {
+    margin: 8px;
+}
+
+.user img {
+    border-radius: 200%;
+    margin-right: 8px;
+}
+
+.user h3 {
+    display: inline-block;
+    font-size: 14px;
+    vertical-align: baseline;
+    font-weight: bold;
+}
+
+.caption p {
+    color: grey;
+}

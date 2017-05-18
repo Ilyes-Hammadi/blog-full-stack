@@ -1,17 +1,30 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block content %} {% for a in articles %}
 
 
-{% block content %}
-   {% for a in articles %}
 
-            <h2>{{ a.title }}</h2>
-            <p>{{ a.content }}</p>
-            <img src="{{ a.image.url }}" alt="" height="220">
+<div class="container">
+    <div class="row">
+	<div class="col-sm-6 col-md-6 col-sm-offset-3 col-md-offset-3">
+		<div class="thumbnail">
+            <div class="user">
+                <img src="http://placehold.it/42x42">
+                <h3>{{ a.user.username}}</h3>
+            </div>
+			<img src="{{ a.image.url }}" alt="...">
+			<div class="caption">
+				<h3>{{ a.title }}</h3>
+				<p>{{ a.content }}</p>
+			</div>
+            <hr>
+            <div class="actions">
+                <i class="like fa fa-heart-o fa-2x"></i>
+                <i class="bookmark fa fa-bookmark-o fa-2x"></i>
+            </div>
+		</div>
+	</div>
+</div>
 
-            <a href="{% url 'update' a.id %}" type="">Update</a>
-            <a href="{% url 'delete' a.id %}">Delete</a>
-        {% endfor %}
-{% endblock %}
 
+</div>
 
- 
+{% endfor %} {% endblock %}

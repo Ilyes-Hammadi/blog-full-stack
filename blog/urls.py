@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 
 
 from articles.views import index, detail, create, update, delete
-from users.views import login, logout
+from users.views import login, logout, signup
 
 urlpatterns = [
     # List of all articles
@@ -42,6 +42,8 @@ urlpatterns = [
     url(r'^login/$', login, name='login'),
 
     url(r'^logout/$',logout, name='logout'),
+    
+    url(r'^signup/$', signup, name='signup'),
 
     # Admin
     url(r'^admin/', admin.site.urls),
