@@ -1,7 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from rest_framework import viewsets
+
 
 from .models import Article
 from .forms import ArticleCreateForm
+from .serializer import ArticleSerializer
 
 # Create your views here.
 def index(request):
@@ -68,3 +71,11 @@ def delete(request, id):
     article = get_object_or_404(Article, pk=id)
     article.delete()
     return redirect('index')
+
+
+####### API #######
+class ArticleViewSet(viewsets.ModelViewSet):
+    queryset = Article.objects.all()
+    serializer_class = ArticleSerializer
+
+

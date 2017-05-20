@@ -8,6 +8,11 @@ from django.contrib import messages
 
 
 # Create your views here.
+from rest_framework import viewsets
+
+from users.serializer import UserSerializer
+
+
 def login(request):
     if request.method == 'POST':
             username = request.POST['username']
@@ -64,3 +69,11 @@ def signup(request):
         return redirect('index')
     else:
         return render(request, 'signup.html')
+
+
+##### API ######
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
