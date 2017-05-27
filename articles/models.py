@@ -2,9 +2,11 @@ from __future__ import unicode_literals
 from django.conf import settings
 from django.db import models
 
+from users.models import Profile
+
 # Create your models here.
 class Article(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1)
+    profile = models.ForeignKey(Profile, default=1)
 
     title = models.CharField(max_length=255)
     content = models.TextField()

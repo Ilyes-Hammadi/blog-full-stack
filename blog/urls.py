@@ -21,10 +21,11 @@ from django.conf.urls.static import static
 from rest_framework import routers
 
 from articles.views import index, detail, create, update, delete, ArticleViewSet
-from users.views import login, logout, signup, UserViewSet
+from users.views import login, logout, signup, UserViewSet, ProfileViewSet, profile
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
+router.register(r'profiles', ProfileViewSet)
 router.register(r'articles', ArticleViewSet)
 
 
@@ -52,6 +53,8 @@ urlpatterns = [
     url(r'^logout/$',logout, name='logout'),
     
     url(r'^signup/$', signup, name='signup'),
+
+    url(r'^profile/(?P<username>\w+)/$', profile, name='profile'),
 
     # Admin
     url(r'^admin/', admin.site.urls),

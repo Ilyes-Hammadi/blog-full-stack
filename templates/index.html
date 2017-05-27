@@ -7,8 +7,8 @@
 	<div class="col-sm-6 col-md-6 col-sm-offset-3 col-md-offset-3">
 		<div class="thumbnail">
             <div class="user">
-                <img src="http://placehold.it/42x42">
-                <h3>{{ a.user.username}}</h3>
+                <img src="{{ a.profile.image.url }}" height="42">
+                <h3>{{ a.profile.user.username}}</h3>
             </div>
 			<img src="{{ a.image.url }}" alt="...">
 			<div class="caption">

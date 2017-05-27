@@ -3,15 +3,15 @@ from __future__ import unicode_literals
 from django.contrib import auth
 from django.contrib.auth.models import User
 from django.contrib.sessions.models import Session
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 
 
 # Create your views here.
 from rest_framework import viewsets
 
-from users.serializer import UserSerializer
-
+from users.serializer import UserSerializer, ProfileSerializer
+from .models import Profile
 
 def login(request):
     if request.method == 'POST':
@@ -63,6 +63,10 @@ def signup(request):
         # Login the created user
         user = auth.authenticate(request, username=username, password=password)
         auth.login(request, user)
+        
+        # Create profile
+        profile = Profile(user=user)
+        profile.save()
 
         messages.success(request, 'Welcome to Djangostagram homie')
         
@@ -70,10 +74,20 @@ def signup(request):
     else:
         return render(request, 'signup.html')
 
+def profile(request, username):
+    user = get_object_or_404(User, username=username)
+    profile = Profile.objects.get(user=user)
+
+    return render(request, 'profile.html', {'profile' : profile})
+
 
 ##### API ######
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+
+class ProfileViewSet(viewsets.ModelViewSet):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
 

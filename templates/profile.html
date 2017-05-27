@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script>
+        const profileId = "{{ profile.id }}";
+
+    </script>
+    <script src="{% static 'js/profile.js' %}"></script>
+{% endblock javascript %} 
+
+{% block content %}
+
+<div id="profile" class="col-xs-10 col-sm-8 col-md-4 col-xs-offset-1 col-sm-offset-2 col-md-offset-4">
+	<img id="profile_image" src="" alt="">
+	<h3 id="username"></h3>
+	<p id="email"></p>
+</div>
+<div id="loader"></div>
+
+
+{% endblock %}
